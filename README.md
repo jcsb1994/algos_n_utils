@@ -1,2 +1,3 @@
 # algos_n_utils
-My personal algorithms in cpp
+
+A set of algorithms and utilities in c/c++ by jcsb1994.
