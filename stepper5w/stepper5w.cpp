@@ -16,10 +16,12 @@ void stepper5w::rotate(const bool dir, const unsigned int degrees)
     _dir = dir;
 }
 
-void stepper5w::run()
+ bool stepper5w::run()
 {
     if(_remaining_steps > 0) {
         step(_dir);
         _remaining_steps--;
-    }    
+    }
+
+    return _remaining_steps ? false : true;
 }

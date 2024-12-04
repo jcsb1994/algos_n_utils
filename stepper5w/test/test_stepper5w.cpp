@@ -20,6 +20,7 @@ int main()
 
     std::cout << "\nTest 3; Stepper 120 degrees:\n";
     myStepper.rotate(1, 120);
+    while (!myStepper.run()) {}
 
     return 0;
 }

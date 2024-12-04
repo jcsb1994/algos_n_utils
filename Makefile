@@ -101,7 +101,7 @@ LIB_NAME :=$(LIB_BASENAME).a
 # Our library will be composed of the ANU files exclusively
 LIB_SRCS := $(ANU_SRCS)
 
-LIB_OBJS := $(LIB_C_FILES:%.cpp=$(BUILD_DIR)/%.o)
+LIB_OBJS := $(LIB_SRCS:%.cpp=$(BUILD_DIR)/%.o)
 
 # Dependencies are simply obj files as .d
 DEPFILES := $(LIB_OBJS:%.o=%.d)
@@ -333,7 +333,7 @@ endif # ifeq ($(support_config),)
 debug:
 	@echo "CFLAGS=$(CFLAGS)"
 	@echo "LIB_DIRS=$(ANU_DIRS)"
-	@echo "LIB_FILES=$(LIB_FILES)"
+	@echo "LIB_SRCS=$(LIB_SRCS)"
 	@echo "ANU_TEST_MAIN_SRCS=$(ANU_TEST_MAIN_SRCS)"
 	@echo "TEST_MAIN_OBJS=$(TEST_MAIN_OBJS)"
 	@echo "TEST_BUILD_DIRS=$(TEST_BUILD_DIRS)"

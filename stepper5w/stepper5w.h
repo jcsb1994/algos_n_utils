@@ -1,4 +1,4 @@
-/*! 
+/*!
 DC motors that move in discrete steps
 Coil
 Phase:
@@ -36,7 +36,8 @@ public:
     ~stepper5w() {}
     void rotate(const bool dir, const unsigned int degrees);
     void step(const bool dir);
-    void run();
+    /*! \return True when motor is done stepping, false otherwise */
+    bool run();
     unsigned int steps_remaining() { return _remaining_steps; }
     /*! \brief Pass the cb to the implementation. Must write coil values to gpios */
     void set_step_cb(void (*step_cb)(const uint8_t coil_state_binary)) { _step_cb = step_cb; }
