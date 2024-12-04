@@ -2,7 +2,7 @@
     \author jcsb1994
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     \brief Tools and algorithms to work with arrays
-    
+
     Does not use qsort, sort, nor any std algo
 */
 
@@ -67,7 +67,7 @@ const unsigned int get_nth_largest_elem_idx_climbing(T* buffer, const unsigned i
 {
     unsigned int ret = get_largest_elem_idx(buffer, size);
     if(pos == 0) { return ret; } // return largest (0th position)
-    
+
     unsigned int lastIdx = ret;
     for (unsigned int i = 1; i <= pos; i++) { // Already have 1 out
         T closestDiff = (1 << 8*sizeof(T)) - 1; // Set type data to all 1's
@@ -91,7 +91,7 @@ const unsigned int get_nth_largest_elem_idx_climbing(T* buffer, const unsigned i
         i += equalCount;
         lastIdx = ret;
     }
-    return ret;  
+    return ret;
 }
 
 template <class T>
@@ -129,74 +129,5 @@ const unsigned int get_nth_largest_elem_idx_descending(T* buffer, const unsigned
     return posIdx;
 
 }
-
-
-// template <class T>
-// const unsigned int get_nth_largest_elem_idx_descending(T* buffer, const unsigned int size, const unsigned int pos)
-// {
-//     unsigned int ret = get_largest_elem_idx(buffer, size);
-//     if(pos == 0) { return ret; } // return largest (0th position)
-    
-//     unsigned int lastIdx = ret;
-//     for (unsigned int i = pos; i > 0; i--) {
-//         T closestDiff = (1 << 8*sizeof(T)) - 1; // Set type data to all 1's
-//         unsigned int equalCount = 0; // count equal values
-
-//         for (unsigned int j = size-1; j > 0; j--) { // DIFF 1
-//             // Smaller than last data and diff is smaller (looking for very next largest)
-//             if (buffer[lastIdx] > buffer[j]) {
-//                 T diff = buffer[lastIdx] - buffer[j];
-//                 if (diff < closestDiff) {
-//                     closestDiff = diff;
-//                     ret = j;
-//                 }
-//             // Treat equal elements
-//             } else if ((buffer[j] == buffer[lastIdx]) && (j != lastIdx)) {
-//                 equalCount++;
-//                 if ((equalCount + i) > pos) {
-//                     return j;
-//                 }
-//             }
-//         }
-//         i -= equalCount; // DIFF 2
-//         lastIdx = ret;
-//     }
-//     return ret;  
-// }
-// 
-
-// template <class T>
-// const unsigned int get_nth_largest_elem_idx_descending(T* buffer, const unsigned int size, const unsigned int pos)
-// {
-//     unsigned int ret = get_largest_elem_idx(buffer, size);
-//     if(pos == 0) { return ret; } // return largest (0th position)
-    
-//     unsigned int lastIdx = ret;
-//     for (unsigned int i = pos; i > 1; i--) {
-//         T closestDiff = (1 << 8*sizeof(T)) - 1; // Set type data to all 1's
-//         unsigned int equalCount = 0; // count equal values
-
-//         for (unsigned int j = size; j > 0; j--) { // DIFF 1
-//             // Smaller than last data and diff is smaller (looking for very next largest)
-//             if (buffer[lastIdx] > buffer[j]) {
-//                 T diff = buffer[lastIdx] - buffer[j];
-//                 if (diff < closestDiff) {
-//                     closestDiff = diff;
-//                     ret = j;
-//                 }
-//             // Treat equal elements
-//             } else if ((buffer[j] == buffer[lastIdx]) && (j != lastIdx)) {
-//                 equalCount++;
-//                 if ((equalCount + i) > pos) {
-//                     return j;
-//                 }
-//             }
-//         }
-//         i -= equalCount; // DIFF 2
-//         lastIdx = ret;
-//     }
-//     return ret;  
-// }
-
 
 }
