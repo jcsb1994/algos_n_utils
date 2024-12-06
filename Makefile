@@ -77,15 +77,17 @@ endif
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # ========================================================
-# Custom API (T8A) Variables
+# Source Variables
 # ========================================================
 
 # Find all directories except for the out-of-source build folder
 ANU_DIRS := $(sort $(dir $(wildcard */)))
 ANU_DIRS := $(filter-out $(DEFAULT_BUILD_DIR)/, $(ANU_DIRS))
 
-# Library files
+# Source files
 ANU_CPP_FILES := $(wildcard *.cpp) $(foreach dir,$(ANU_DIRS), $(wildcard $(dir)*.cpp))
+ANU_H_FILES := $(wildcard *.h) $(foreach dir,$(ANU_DIRS), $(wildcard $(dir)*.h))
+
 # Remove test-related files
 ANU_CPP_FILES := $(filter-out test_%.cpp, $(ANU_CPP_FILES))
 ANU_CPP_FILES := $(filter-out $(TEST_FILES), $(ANU_CPP_FILES))
@@ -104,7 +106,7 @@ LIB_SRCS := $(ANU_SRCS)
 LIB_OBJS := $(LIB_SRCS:%.cpp=$(BUILD_DIR)/%.o)
 
 # Dependencies are simply obj files as .d
-DEPFILES := $(LIB_OBJS:%.o=%.d)
+DEPFILES := $(ANU_H_FILES:%.h=%.d)
 
 # Get an original source file's relative path from provided out-of-source object (ooso) file
 get_src_from_ooso = $(patsubst $(BUILD_DIR)/%.o,%.cpp,$(1))
@@ -341,6 +343,7 @@ debug:
 	@echo "TEST_ELFS=$(TEST_ELFS)"
 	@echo "BUILD_DIR=$(BUILD_DIR)"
 	@echo "TEST_OBJS=$(TEST_OBJS)"
+	@echo "DEPFILES=$(DEPFILES)"
 
 
 help:
